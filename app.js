@@ -4,13 +4,30 @@
  */
 
 var express = require('express'),
-  routes = require('./routes'),
-  api = require('./routes/api'),
-  http = require('http'),
-  path = require('path');
+	routes = require('./routes'),
+	api = require('./routes/api'),
+	http = require('http'),
+	path = require('path'),
+	mongoose = require('mongoose'),
+	passport = require('passport'),
+	LocalStrategy = require('passport-local').Strategy;
 
 var app = module.exports = express();
 
+mongoose.connect('mongodb://localhost/action_steps_v1_2');
+
+var Schema = mongoose.Schema,
+	ObjectId = Schema.ObjectId;
+
+var User = new Schema({ // update data model here
+	username: String,
+	password: String
+});
+
+var UserModel = mongoose.model('User', User);
+UserModel.prototype.validPassword = function(pass) {
+	return (this.password === pass);
+}
 
 /**
  * Configuration
@@ -24,7 +41,11 @@ app.use(express.logger('dev'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.cookieParser());
+app.use(express.session({ secret: 'keyboardcat' }));
+app.use(passport.initialize());
 app.use(app.router);
+app.use(passport.session());
 
 // development only
 if (app.get('env') === 'development') {
@@ -36,6 +57,37 @@ if (app.get('env') === 'production') {
   // TODO
 };
 
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    UserModel.findOne({ username: username }, function (err, user) {
+    	console.log(user);	
+      if (err) { 
+      	console.log('There was an error');
+      	return done(err); 
+      }
+      if (!user) {
+      	console.log('Username invalid');
+        return done(null, false, { message: 'Incorrect username.' });
+      }
+      if (!user.validPassword(password)) {
+      	console.log('Password incorrect');
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    });
+  }
+));
+
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findOne(id, function (err, user) {
+    done(err, user);
+  });
+});
+
 
 /**
  * Routes
@@ -43,13 +95,72 @@ if (app.get('env') === 'production') {
 
 // serve index and view partials
 app.get('/', routes.index);
+
+app.get('/login', function(req, res) {
+	console.log(req.session.user);
+	if (!req.session.user) {
+		res.render('login');
+	} else {
+		res.redirect('/');
+	}
+});
+
+app.post('/login', passport.authenticate('local', { 
+	failureRedirect: '/login'
+}), function(req, res) {
+	req.session.user = req.body.username;
+	res.redirect('/');
+});
+app.get('/signup', function(req, res) {
+	if (!req.session.user) {
+		res.render('signup');	
+	} else {
+		res.redirect('/');
+	}
+});
+app.post('/signup', function(req,res) {
+	if (req.body.username && req.body.password) {
+		var user = new UserModel({
+			username: req.body.username,
+			password: req.body.password
+		});
+		user.save(function(err) {
+			if (!err) {
+				console.log(user.username);
+				req.session.user = req.body.username;
+				res.redirect('/');
+			} else {
+				console.log(err);
+				res.redirect('/signup');
+			}
+		});
+	} else {
+		res.redirect('/signup');
+	}
+});
+app.get('/:user', function(req, res) {
+	if (!req.session.user) {
+		res.redirect('/login');
+	} else if (req.params.user != req.session.user) {
+		res.redirect('/' + req.session.user);
+	} else {
+		res.render('index');
+	}
+});
+
 app.get('/partials/:name', routes.partials);
 
 // JSON API
 app.get('/api/name', api.name);
 
 // redirect all others to the index (HTML5 history)
-app.get('*', routes.index);
+app.get('*', function(req, res) {
+	if (!req.session.user) {
+		res.render('login');
+	} else {
+		res.redirect('/');
+	}
+});
 
 
 /**

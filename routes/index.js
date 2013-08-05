@@ -4,7 +4,11 @@
  */
 
 exports.index = function(req, res){
-  res.render('index');
+  if (!req.session.user) {
+		res.redirect('/login');
+	} else {
+		res.render('index');
+	}
 };
 
 exports.partials = function (req, res) {
