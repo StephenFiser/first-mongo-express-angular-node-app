@@ -6,8 +6,7 @@ var app = angular.module('myApp', [
   'myApp.controllers',
   'myApp.filters',
   'myApp.services',
-  'myApp.directives',
-  'ngResource'
+  'myApp.directives'
 ]);
 
 app.config(function ($routeProvider, $locationProvider) {

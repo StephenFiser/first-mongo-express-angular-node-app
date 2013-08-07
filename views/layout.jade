@@ -1,9 +1,18 @@
 !!!
-html(ng-app="myApp")
-  head
-    meta(charset='utf8')
-    base(href='/')
-    title Angular Express Seed App
-    link(rel='stylesheet', href='/css/app.css')
-  body
-    block body
+html(lang="en", ng-app="myApp")
+	head
+		meta(charset="utf-8")
+		base(href='/')
+		link(rel="stylesheet", type="text/css", href="css/lib/bootstrap.min.css")
+		link(rel="stylesheet", type="text/css", href="css/app.css")
+		title Action Steps
+	
+	body(ng-controller="AppCtrl")
+		div(class="navbar navbar-inverse")
+			div(class="navbar-inner")
+				div(class="container")
+					a(class="brand", href="#") Action Steps
+					ul(class="nav")
+						li(class="active") 
+							a(href="#") Home
+		block body
