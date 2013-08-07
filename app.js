@@ -14,13 +14,16 @@ var express = require('express'),
 
 var app = module.exports = express();
 
-mongoose.connect('mongodb://localhost/action_steps_v1_2');
+mongoose.connect('mongodb://localhost/action_steps_v1_3');
 
 var Schema = mongoose.Schema,
 	ObjectId = Schema.ObjectId;
 
 var User = new Schema({ // update data model here
-	username: String,
+	first_name: String,
+	last_name: String,
+	email: {type: String, unique: true},
+	username: {type: String, unique: true},
 	password: String
 });
 
@@ -59,8 +62,7 @@ if (app.get('env') === 'production') {
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    UserModel.findOne({ username: username }, function (err, user) {
-    	console.log(user);	
+    UserModel.findOne({ username: username }, function (err, user) {	
       if (err) { 
       	console.log('There was an error');
       	return done(err); 
@@ -121,6 +123,9 @@ app.get('/signup', function(req, res) {
 app.post('/signup', function(req,res) {
 	if (req.body.username && req.body.password) {
 		var user = new UserModel({
+			first_name: req.body.first_name,
+			last_name: req.body.last_name,
+			email: req.body.email,
 			username: req.body.username,
 			password: req.body.password
 		});
@@ -144,6 +149,9 @@ app.get('/:user', function(req, res) {
 	} else if (req.params.user != req.session.user) {
 		res.redirect('/' + req.session.user);
 	} else {
+		UserModel.findOne({username: new RegExp('^'+req.params.user+'$', "i")}, function(err, user) {
+		  console.log(user);
+		});
 		res.render('index');
 	}
 });
