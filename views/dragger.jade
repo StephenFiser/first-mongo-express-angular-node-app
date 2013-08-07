@@ -1,0 +1,29 @@
+
+
+	
+div(id="leftBar")
+	div(id="createTask")
+		form(ng-submit="addTask()")
+			h5 Create a new task:
+			div(id="taskInput")
+				input(type="text", ng-model="taskInput", ng-model-instant)
+				button(type="submit", class="btn btn-info") Add
+
+	div(id="panel", data-drop="true", ng-model='tasks', data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=tasks])'}",  jqyoui-droppable="{multiple:true}">
+		div(class="btn btn-{{item.checked}} btn-draggable panelWidth", ng-repeat="item in tasks", ng-show="item.title", data-drag="{{item.drag}}", data-jqyoui-options="{revert: 'invalid'}", ng-model="tasks", jqyoui-draggable="{index: {{$index}},animate:true}") {{item.title}}
+
+
+div(id="content")
+	div(class="space left")
+		a(class="left arrow", href="#", data-slide="prev") &lsaquo;
+	div(ng-view)
+	div(class="space")
+		a(class="right arrow", href="#", data-slide="next") &rsaquo;
+
+
+div(id="footer")
+
+
+
+
+	

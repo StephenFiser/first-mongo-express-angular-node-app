@@ -9,12 +9,14 @@ angular.module('myApp.controllers', []).
     console.log(data);
   });
 
-    $scope.addTask = function() {
-      console.log($scope.taskInput);
-      $scope.person.projects.push({title:$scope.taskInput});
-      
-      $scope.taskInput = '';
-    };
+  $scope.tasks = [];
+
+  $scope.addTask = function() {
+    console.log($scope.taskInput);
+    $scope.tasks.push({title:$scope.taskInput, done:false, drag:true, checked: "info"});
+    
+    $scope.taskInput = '';
+  };
 
 
 
