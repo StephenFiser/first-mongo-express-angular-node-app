@@ -2,13 +2,15 @@
 
 // Declare app level module which depends on filters, and services
 
-angular.module('myApp', [
+var app = angular.module('myApp', [
   'myApp.controllers',
   'myApp.filters',
   'myApp.services',
-  'myApp.directives'
-]).
-config(function ($routeProvider, $locationProvider) {
+  'myApp.directives',
+  'ngResource'
+]);
+
+app.config(function ($routeProvider, $locationProvider) {
   $routeProvider.
     when('/view1', {
       templateUrl: 'partials/partial1',
@@ -23,4 +25,15 @@ config(function ($routeProvider, $locationProvider) {
     });
 
   $locationProvider.html5Mode(true);
+});
+
+app.factory('Person', function($http) {
+  return {
+    getPerson: function() {
+      return $http({
+        url: '/person',
+        method: 'GET'
+      });
+    }
+  }
 });

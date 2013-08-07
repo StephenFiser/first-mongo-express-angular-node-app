@@ -1,20 +1,13 @@
 angular.module('myApp.controllers', []).
-  controller('AppCtrl', function ($scope, $http) {
+  controller('AppCtrl', function ($scope, $location, $http, Person) {
 
-    $scope.person = {
-      first_name: 'Stephen',
-      last_name: 'Fiser',
-      projects: [
-        {title: "General Tasks", tasks: [
-          {title: 'Take out the trash', difficulty: 4}, 
-          {title: 'Eat breakfast', difficulty: 1} 
-        ]},
-        {title: "Other Tasks", tasks: [
-          {title: 'Make Toast', difficulty: 2}, 
-          {title: 'Go to outer space', difficulty: 10} 
-        ]}
-      ]
-    };
+  console.log(Person);
+
+  $scope.person = {};
+  Person.getPerson().success(function(data) {
+    $scope.person = data;
+    console.log(data);
+  });
 
     $scope.addTask = function() {
       console.log($scope.taskInput);

@@ -14,17 +14,17 @@ var express = require('express'),
 
 var app = module.exports = express();
 
-mongoose.connect('mongodb://localhost/action_steps_v1_3');
+mongoose.connect('mongodb://localhost/action_steps_v1_4');
 
 var Schema = mongoose.Schema,
 	ObjectId = Schema.ObjectId;
 
 var User = new Schema({ // update data model here
-	first_name: String,
-	last_name: String,
-	email: {type: String, unique: true},
-	username: {type: String, unique: true},
-	password: String
+	"first_name": String,
+	"last_name": String,
+	"email": {type: String, unique: true},
+	"username": {type: String, unique: true},
+	"password": String
 });
 
 var UserModel = mongoose.model('User', User);
@@ -143,15 +143,28 @@ app.post('/signup', function(req,res) {
 		res.redirect('/signup');
 	}
 });
+
+app.get('/person', function(req,res) {
+	if (!req.session.user) {
+		res.redirect('/login');
+	} else {
+		UserModel.findOne({username: new RegExp('^'+req.session.user+'$', "i")}, function(err, user) {
+			if (!err) {
+				console.log(JSON.stringify(user));
+				res.send(user);
+			} else {
+				console.log(err);
+			}
+		});
+	}
+});
+
 app.get('/:user', function(req, res) {
 	if (!req.session.user) {
 		res.redirect('/login');
 	} else if (req.params.user != req.session.user) {
 		res.redirect('/' + req.session.user);
 	} else {
-		UserModel.findOne({username: new RegExp('^'+req.params.user+'$', "i")}, function(err, user) {
-		  console.log(user);
-		});
 		res.render('index');
 	}
 });
