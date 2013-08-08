@@ -34,7 +34,7 @@ html, body {
 	float: left;
 }
 
-.goal {
+.project {
 	width: 18%;
 	height: 82%;
 	margin: 10px;
@@ -103,9 +103,18 @@ html, body {
 }
 
 .panelWidth {
-	width: 160px;
+	width: 190px;
 }
 
 .dayWidth {
 	width: 180px;
+}
+
+.fill {
+	width: 100%;
+	height: 100%;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	background-image: url("../../img/glyphicons-halflings.png");
 }

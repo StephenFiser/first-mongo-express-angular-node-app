@@ -6,7 +6,8 @@ var app = angular.module('myApp', [
   'myApp.controllers',
   'myApp.filters',
   'myApp.services',
-  'myApp.directives'
+  'myApp.directives',
+  'ngDragDrop'
 ]);
 
 app.config(function ($routeProvider, $locationProvider) {

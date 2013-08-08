@@ -9,13 +9,33 @@ angular.module('myApp.controllers', []).
     console.log(data);
   });
 
+  $scope.projectInput = '';
+
+
+  $scope.createProject = function() {
+    if ($scope.projectInput != '') {
+      console.log($scope.projectInput);
+      $scope.projects.push({title:$scope.projectInput, tasks: []});
+      $scope.projectInput = '';
+    }
+  };
+
   $scope.tasks = [];
 
+  $scope.projects = [
+    {title: "General Tasks", tasks: []}
+  ];
+
   $scope.addTask = function() {
-    console.log($scope.taskInput);
-    $scope.tasks.push({title:$scope.taskInput, done:false, drag:true, checked: "info"});
-    
-    $scope.taskInput = '';
+    if ($scope.taskInput != '') {
+      console.log($scope.taskInput);
+      $scope.tasks.push({title:$scope.taskInput, done:false, drag:true, checked: "info"});
+      $scope.taskInput = '';
+    }
+  };
+
+  $scope.removeTask = function() {
+    console.log(this);
   };
 
 
