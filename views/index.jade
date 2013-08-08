@@ -4,21 +4,39 @@ block body
     div(id="leftBar")
         div(id="createTask")
             form(ng-submit="addTask()")
-                h5 Create a new task:
                 div(id="taskInput")
-                    input(type="text", ng-model="taskInput", ng-model-instant)
+                    input(type="text", ng-model="taskInput", ng-model-instant, placeholder="Create a new task.")
                     button(type="submit", class="btn btn-info") Add
 
         div(id="panel", data-drop="true", ng-model="tasks", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=tasks])'}", jqyoui-droppable="{multiple:true}")
             div(class="btn btn-{{item.checked}} btn-draggable panelWidth", ng-repeat="item in tasks", ng-show="item.title", data-drag="{{item.drag}}", data-jqyoui-options="{revert: 'invalid'}", ng-model="tasks", jqyoui-draggable="{index: {{$index}},animate:true}") {{item.title}}
+
+        div(id="trash", data-drop="true", ng-model="trash", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=trash])'}", jqyoui-droppable="{multiple:true}")
+            i(class="icon-trash icon-white pull-left")
+            p(class="white lead pull-left") Drag Here to Discard
 
 
     div(id="content")
         div(class="space left")
             a(class="left arrow", href="#", data-slide="prev") &lsaquo;
         div(class="project", ng-repeat="project in projects")
+            div.tabtop
+                h5.pull-left {{project.title}}
+                a(href="#myModal", role="button", data-toggle="modal")
+                    i(class="icon-remove icon-white pull-right")
+
+            div(id="myModal", class="modal hide fade", tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+                div(class="modal-header")
+                    a(href="/", type="button", class="close", data-dismiss="modal", aria-hidden="true") ×
+                    h3(id="myModalLabel") Modal header
+                div(class="modal-body")
+                    p(ng-repeat="task in project.tasks") 
+                        input(type="text", ng-model="task.title")
+                div(class="modal-footer")
+                    a(href="/", class="btn btn-primary", data-dismiss="modal", aria-hidden="true") Save changes
+
             div(class="fill", data-drop="true", ng-model="project.tasks", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=project])'}", jqyoui-droppable="{multiple:true}")
-                div(class="btn btn-{{item.checked}} btn-draggable panelWidth", ng-repeat="item in project.tasks", ng-show="item.title", data-drag="{{item.drag}}", data-jqyoui-options="{revert: 'invalid'}", ng-model="project.tasks", jqyoui-draggable="{index: {{$index}},animate:true}") {{item.title}}
+                div(class="btn btn-{{item.checked}} btn-draggable projectWidth", ng-repeat="item in project.tasks", ng-show="item.title", data-drag="{{item.drag}}", data-jqyoui-options="{revert: 'invalid'}", ng-model="project.tasks", jqyoui-draggable="{index: {{$index}},animate:true}") {{item.title}}
 
 
 
@@ -26,7 +44,7 @@ block body
         div(class="space")
             a(class="right arrow", href="#", data-slide="next") &rsaquo;
 
-
+    // a(class="btn btn-large", ng-click="show()") Show Me
     div(id="footer")
 
     script(src='js/app.js')

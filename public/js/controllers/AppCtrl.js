@@ -20,7 +20,12 @@ angular.module('myApp.controllers', []).
     }
   };
 
+  $scope.editProject = function(index) {
+    console.log($scope.projects[index].title);
+  };
+
   $scope.tasks = [];
+  $scope.trash = [];
 
   $scope.projects = [
     {title: "General Tasks", tasks: []}
@@ -29,16 +34,14 @@ angular.module('myApp.controllers', []).
   $scope.addTask = function() {
     if ($scope.taskInput != '') {
       console.log($scope.taskInput);
-      $scope.tasks.push({title:$scope.taskInput, done:false, drag:true, checked: "info"});
+      $scope.tasks.push({title:$scope.taskInput, remove:false, drag:true, checked: "danger"});
       $scope.taskInput = '';
     }
   };
 
-  $scope.removeTask = function() {
-    console.log(this);
-  };
-
-
+  $scope.show = function() {
+    console.log($scope.projects);
+  }
 
     $http({
       method: 'GET',
@@ -51,12 +54,24 @@ angular.module('myApp.controllers', []).
       $scope.name = 'Error!'
     });
 
-  }).
-  controller('MyCtrl1', function ($scope) {
-    // write Ctrl here
 
-  }).
-  controller('MyCtrl2', function ($scope) {
-    // write Ctrl here
+
+
+       $scope.open = function () {
+        $scope.shouldBeOpen = true;
+      };
+
+      $scope.close = function () {
+        $scope.closeMsg = 'I was closed at: ' + new Date();
+        $scope.shouldBeOpen = false;
+      };
+
+      $scope.items = ['item1', 'item2'];
+
+      $scope.opts = {
+        backdropFade: true,
+        dialogFade:true
+      };
 
   });
+  
