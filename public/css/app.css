@@ -214,8 +214,9 @@ html, body {
 }
 
 .btn-danger {
-	color: #fff;
+	color: black;
 	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
+	background-color: #B4E53A;
 	background-image:none;
 	background-image: none;
 	background-image: none;
@@ -226,6 +227,11 @@ html, body {
 	border-color: none;
 	filter: progid:none;
 	filter: progid:none;
+}
+
+.btn-danger:hover {
+	color: black;
+	background-color: #A0CC33;
 }
 
 .btn {

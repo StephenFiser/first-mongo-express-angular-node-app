@@ -37,3 +37,9 @@ app.factory('Person', function($http) {
     }
   }
 });
+
+app.filter('removeWhite', function() {
+  return function(input) {
+    return input.replace(/\s+/g, '');
+  }
+});

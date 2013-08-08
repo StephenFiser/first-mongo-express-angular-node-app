@@ -22,21 +22,22 @@ block body
         div(class="project", ng-repeat="project in projects")
             div.tabtop
                 h5.pull-left {{project.title}}
-                a(href="#myModal", role="button", data-toggle="modal")
-                    i(class="icon-remove icon-white pull-right")
-
-            div(id="myModal", class="modal hide fade", tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
-                div(class="modal-header")
-                    a(href="/", type="button", class="close", data-dismiss="modal", aria-hidden="true") ×
-                    h3(id="myModalLabel") Modal header
-                div(class="modal-body")
-                    p(ng-repeat="task in project.tasks") 
-                        input(type="text", ng-model="task.title")
-                div(class="modal-footer")
-                    a(href="/", class="btn btn-primary", data-dismiss="modal", aria-hidden="true") Save changes
+                
 
             div(class="fill", data-drop="true", ng-model="project.tasks", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=project])'}", jqyoui-droppable="{multiple:true}")
                 div(class="btn btn-{{item.checked}} btn-draggable projectWidth", ng-repeat="item in project.tasks", ng-show="item.title", data-drag="{{item.drag}}", data-jqyoui-options="{revert: 'invalid'}", ng-model="project.tasks", jqyoui-draggable="{index: {{$index}},animate:true}") {{item.title}}
+                    a(href="#"+"{{item.title | removeWhite}}", role="button", data-toggle="modal")
+                        i(class="icon-remove pull-right")
+
+                    div(id="{{item.title | removeWhite}}", class="modal hide fade", tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+                        div(class="modal-header")
+                            a(href="/", type="button", class="close", data-dismiss="modal", aria-hidden="true") ×
+                            h3(id="myModalLabel") Modal header
+                        div(class="modal-body")
+                            // input(type="text", ng-model="item.title")
+                            {{item.title}}
+                        div(class="modal-footer")
+                            a(href="/", class="btn btn-primary", data-dismiss="modal", aria-hidden="true") Save changes
 
 
 
