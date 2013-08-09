@@ -5,17 +5,23 @@ html(lang="en", ng-app="myApp")
 		base(href='/')
 		link(rel="stylesheet", type="text/css", href="css/lib/bootstrap.min.css")
 		link(rel="stylesheet", type="text/css", href="css/app.css")
+		link(href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700', rel='stylesheet', type='text/css')
 		title Action Steps
 	body
-		a(href='/signup') Sign Up
-		form(action="/login", method="post")
-			div
-				label Username
-				input(type="text", name="username")
-			div
-				label Password
-				input(type="password", name="password")
-			div 
-				input(type="submit", value="Log In")
+		div(class="navbar")
+				div(class="navbar-inner")
+					div(class="container")
+						a(class="brand", href="#") Action Steps
+		div.container
+			div(class="center hero-unit")
+				h1 Action Steps
+				form(action="/login", method="post")
+					div
+						input(type="text", name="username", placeholder="Username")
+					div
+						input(type="password", name="password", placeholder="Password")
+					div 
+						input(type="submit", value="Log In", class="btn btn-info pull-left")
+						a(href='/signup', class="btn btn-danger room pull-left moveUp") Sign Up
 
 	

@@ -13,6 +13,7 @@ html(lang="en", ng-app="myApp")
 		script(src='js/lib/angular.min.js')
 		script(src='js/lib/angular-dragdrop.js')
 		script(src='js/lib/bootstrap.min.js')
+		script(src='js/lib/jquery.knob.js')
 		
 	
 	body(ng-controller="AppCtrl")
@@ -26,5 +27,7 @@ html(lang="en", ng-app="myApp")
 								input(type="text", ng-model="projectInput", class="projectInput", placeholder="Create a new project.")
 							li
 								input(type="submit", class="btn btn-info", value="Create")
+							li
+								button(class="btn btn-success save", ng-click="save()") Save
 						
 		block body
