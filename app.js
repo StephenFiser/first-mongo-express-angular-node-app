@@ -177,9 +177,10 @@ app.put('/person', function(req,res) {
 		res.redirect('/login');
 	} else {
 		console.log('Updating user');
-		console.log(req.body);
-		UserModel.findById(req.body.id, function(err,user) {
-			user = req.body;
+		console.log(req.body.projects);
+		UserModel.findOne({username: new RegExp('^'+req.session.user+'$', "i")}, function(err, user) {
+			console.log(user);
+			user.projects = req.body.projects;
 			console.log(user.first_name + ' is here');
 			user.save(function(err) {
 				if (!err) {
