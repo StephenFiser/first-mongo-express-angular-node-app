@@ -28,14 +28,16 @@ app.config(function ($routeProvider, $locationProvider) {
 });
 
 app.factory('Person', function($http) {
-  return {
+  var Person = {
     getPerson: function() {
-      return $http({
-        url: '/person',
-        method: 'GET'
+      var promise = $http.get('/person').then(function(response) {
+        console.log(response);
+        return response.data;
       });
+      return promise;
     }
-  }
+  };
+  return Person;
 });
 
 app.filter('removeWhite', function() {

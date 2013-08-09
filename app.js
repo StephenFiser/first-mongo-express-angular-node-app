@@ -14,17 +14,30 @@ var express = require('express'),
 
 var app = module.exports = express();
 
-mongoose.connect('mongodb://localhost/action_steps_v1_4');
+mongoose.connect('mongodb://localhost/action_steps_v1_6');
 
 var Schema = mongoose.Schema,
 	ObjectId = Schema.ObjectId;
+
+var Tasks = new Schema({
+	"title": String,
+	"description": String,
+	"difficulty": Number,
+	"completed": Boolean
+});	
+
+var Project = new Schema({
+	"title": String,
+	"tasks": [ Tasks ]
+});
 
 var User = new Schema({ // update data model here
 	"first_name": String,
 	"last_name": String,
 	"email": {type: String, unique: true},
 	"username": {type: String, unique: true},
-	"password": String
+	"password": String,
+	"projects": [ Project ]
 });
 
 var UserModel = mongoose.model('User', User);
@@ -159,6 +172,31 @@ app.get('/person', function(req,res) {
 	}
 });
 
+app.put('/person', function(req,res) {
+	if (!req.session.user) {
+		res.redirect('/login');
+	} else {
+		console.log('Updating user');
+		console.log(req.body);
+		UserModel.findById(req.body.id, function(err,user) {
+			user = req.body;
+			console.log(user.first_name + ' is here');
+			user.save(function(err) {
+				if (!err) {
+					console.log('User updated');
+				} else {
+					console.log(err);
+				}
+ 			});
+		});
+	}
+});
+
+app.get('/logout', function(req, res) {
+	req.session.user = null;
+	res.redirect('/login');
+});
+
 app.get('/:user', function(req, res) {
 	if (!req.session.user) {
 		res.redirect('/login');
@@ -168,6 +206,8 @@ app.get('/:user', function(req, res) {
 		res.render('index');
 	}
 });
+
+
 
 app.get('/partials/:name', routes.partials);
 

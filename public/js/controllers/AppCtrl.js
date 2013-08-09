@@ -1,13 +1,17 @@
 angular.module('myApp.controllers', []).
   controller('AppCtrl', function ($scope, $location, $http, Person) {
 
-  console.log(Person);
-
-  $scope.person = {};
-  Person.getPerson().success(function(data) {
+  
+  Person.getPerson().then(function(data) {
     $scope.person = data;
-    console.log(data);
-  });
+    console.log($scope.person);
+
+    $scope.projects = $scope.person.projects;
+    console.log($scope.projects);
+
+    $scope.projects.push({title: "General Tasks", tasks: []});
+  
+  
 
   $scope.projectInput = '';
 
@@ -27,9 +31,7 @@ angular.module('myApp.controllers', []).
   $scope.tasks = [];
   $scope.trash = [];
 
-  $scope.projects = [
-    {title: "General Tasks", tasks: []}
-  ];
+  
 
   $scope.addTask = function() {
     if ($scope.taskInput != '') {
@@ -43,16 +45,19 @@ angular.module('myApp.controllers', []).
     console.log($scope.projects);
   }
 
-    $http({
-      method: 'GET',
-      url: '/api/name'
-    }).
-    success(function (data, status, headers, config) {
-      $scope.name = data.name;
-    }).
-    error(function (data, status, headers, config) {
-      $scope.name = 'Error!'
-    });
+    $scope.save = function() {
+      $http({
+      method: 'PUT',
+      url: '/person',
+      data: $scope.person
+      }).
+      success(function (data, status, headers, config) {
+        console.log(data);
+      }).
+      error(function (data, status, headers, config) {
+        console.log('error');
+      });
+    };
 
 
 
@@ -72,6 +77,5 @@ angular.module('myApp.controllers', []).
         backdropFade: true,
         dialogFade:true
       };
-
   });
-  
+  });
