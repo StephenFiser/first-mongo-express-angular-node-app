@@ -1,10 +1,11 @@
 !!!
-html
+html(lang="en", ng-app="myApp")
 	head
-		meta(charset='utf8')
+		meta(charset="utf-8")
 		base(href='/')
-		title Angular Express Seed App
-		link(rel='stylesheet', href='/css/app.css')
+		link(rel="stylesheet", type="text/css", href="css/lib/bootstrap.min.css")
+		link(rel="stylesheet", type="text/css", href="css/app.css")
+		title Action Steps
 	body
 		a(href='/signup') Sign Up
 		form(action="/login", method="post")

@@ -9,7 +9,6 @@ angular.module('myApp.controllers', []).
     $scope.projects = $scope.person.projects;
     console.log($scope.projects);
 
-    $scope.projects.push({title: "General Tasks", tasks: []});
   
   
 

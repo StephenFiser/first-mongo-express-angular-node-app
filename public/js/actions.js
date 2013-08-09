@@ -7,6 +7,7 @@ $(function() {
 		if (trigger == left) {
 			step += (projectWidth*2);
 		}
+		console.log(step);
 		$('.project-holder').animate({left: -step});
 		step += projectWidth;
 		trigger = right;

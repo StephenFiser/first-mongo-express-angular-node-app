@@ -9,36 +9,34 @@ block body
                     button(type="submit", class="btn btn-info") Add
 
         div(id="panel", data-drop="true", ng-model="tasks", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=tasks])'}", jqyoui-droppable="{multiple:true}")
-            div(class="btn btn-{{item.checked}} btn-draggable panelWidth", ng-repeat="item in tasks", ng-show="item.title", data-drag="{{item.drag}}", data-jqyoui-options="{revert: 'invalid'}", ng-model="tasks", jqyoui-draggable="{index: {{$index}},animate:true}") {{item.title}}
+            div(class="btn btn-danger btn-draggable panelWidth", ng-repeat="item in tasks", ng-show="item.title", data-drag="true", data-jqyoui-options="{revert: 'invalid'}", ng-model="tasks", jqyoui-draggable="{index: {{$index}},animate:true}") {{item.title}}
 
         div(id="trash", data-drop="true", ng-model="trash", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=trash])'}", jqyoui-droppable="{multiple:true}")
-            i(class="icon-trash icon-white pull-left")
-            p(class="white lead pull-left") Drag Here to Discard
+            i(class="icon-trash pull-left")
+            p(class="lead pull-left") Drag Here to Discard
 
 
     div(id="content")
         div(class="space left")
             a(class="left arrow", id="left", href="#", data-slide="prev") &lsaquo;
-        div.inner-content
-            div.project-holder
-                div(class="project", ng-repeat="project in projects")
-                    div.tabtop
-                        h5.pull-left {{project.title}}
-                        
-                    div(class="fill", data-drop="true", ng-model="project.tasks", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=project])'}", jqyoui-droppable="{multiple:true}")
-                        div(class="btn btn-{{item.checked}} btn-draggable projectWidth", ng-repeat="item in project.tasks", ng-show="item.title", data-drag="{{item.drag}}", data-jqyoui-options="{revert: 'invalid'}", ng-model="project.tasks", jqyoui-draggable="{index: {{$index}},animate:true}") {{item.title}}
-                            a(href="#"+"{{item.title | removeWhite}}", role="button", data-toggle="modal")
-                                i(class="icon-remove pull-right")
+        div(class="project", ng-repeat="project in projects")
+            div.tabtop
+                h5.pull-left {{project.title}}
+                
+            div(class="fill", data-drop="true", ng-model="project.tasks", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=project])'}", jqyoui-droppable="{multiple:true}")
+                div(class="btn btn-danger btn-draggable projectWidth", ng-repeat="item in project.tasks", ng-show="item.title", data-drag="true", data-jqyoui-options="{revert: 'invalid'}", ng-model="project.tasks", jqyoui-draggable="{index: {{$index}},animate:true}") {{item.title}}
+                    a(href="#"+"{{item.title | removeWhite}}", role="button", data-toggle="modal")
+                        i(class="icon-remove pull-right")
 
-                            div(id="{{item.title | removeWhite}}", class="modal hide fade", tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
-                                div(class="modal-header")
-                                    a(href="/", type="button", class="close", data-dismiss="modal", aria-hidden="true") ×
-                                    h3(id="myModalLabel") Task Overview
-                                div(class="modal-body")
-                                    // input(type="text", ng-model="item.title")
-                                    {{item.title}}
-                                div(class="modal-footer")
-                                    a(href="/", class="btn btn-info", data-dismiss="modal", aria-hidden="true") Save changes
+                    div(id="{{item.title | removeWhite}}", class="modal hide fade", tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+                        div(class="modal-header")
+                            a(href="/", type="button", class="close", data-dismiss="modal", aria-hidden="true") ×
+                            h3(id="myModalLabel") Task Overview
+                        div(class="modal-body")
+                            // input(type="text", ng-model="item.title")
+                            {{item.title}}
+                        div(class="modal-footer")
+                            a(href="/", class="btn btn-info", data-dismiss="modal", aria-hidden="true") Save changes
 
 
 
@@ -46,7 +44,7 @@ block body
         div(class="space")
             a(class="right arrow", id="right", href="#", data-slide="next") &rsaquo;
 
-     a(class="btn btn-large", ng-click="save()") Show Me
+     // a(class="btn btn-large", ng-click="save()") Show Me
     div(id="footer")
 
     script(src='js/app.js')

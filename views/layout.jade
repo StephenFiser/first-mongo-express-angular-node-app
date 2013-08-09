@@ -16,7 +16,7 @@ html(lang="en", ng-app="myApp")
 		
 	
 	body(ng-controller="AppCtrl")
-		div(class="navbar navbar-fixed-top navbar-inverse")
+		div(class="navbar navbar-fixed-top")
 			div(class="navbar-inner")
 				div(class="container")
 					a(class="brand", href="#") Action Steps
@@ -25,6 +25,6 @@ html(lang="en", ng-app="myApp")
 							li
 								input(type="text", ng-model="projectInput", class="projectInput", placeholder="Create a new project.")
 							li
-								input(type="submit", class="btn", value="Create")
+								input(type="submit", class="btn btn-info", value="Create")
 						
 		block body
