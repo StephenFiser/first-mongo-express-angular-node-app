@@ -14,7 +14,8 @@ var express = require('express'),
 
 var app = module.exports = express();
 
-mongoose.connect('mongodb://localhost/action_steps_v1_6');
+var db_url = process.env.MONGOHQ_URL || 'mongodb://localhost/action_steps_v1_6';
+mongoose.connect(db_url);
 
 var Schema = mongoose.Schema,
 	ObjectId = Schema.ObjectId;
