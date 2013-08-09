@@ -71,8 +71,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.cookieParser());
 app.use(express.session({ secret: 'keyboardcat' }));
 app.use(passport.initialize());
-app.use(app.router);
 app.use(passport.session());
+app.use(app.router);
 
 // development only
 if (app.get('env') === 'development') {
