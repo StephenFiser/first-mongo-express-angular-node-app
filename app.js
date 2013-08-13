@@ -144,6 +144,12 @@ app.get('/signup', function(req, res) {
 		res.redirect('/');
 	}
 });
+
+app.get('/logout', function(req, res) {
+	req.session.user = undefined;
+	res.redirect('/login');
+});
+
 app.post('/signup', function(req,res) {
 	if (req.body.username && req.body.password) {
 		var user = new UserModel({
@@ -204,10 +210,6 @@ app.put('/person', function(req,res) {
 	}
 });
 
-app.get('/logout', function(req, res) {
-	req.session.user = null;
-	res.redirect('/login');
-});
 
 app.get('/:user', function(req, res) {
 	if (!req.session.user) {

@@ -58,6 +58,15 @@ angular.module('myApp.controllers', []).
       });
     };
 
+    $scope.logout = function() {
+      $http({
+        method: 'GET',
+        url: '/logout'
+      }).success(function() {
+        window.location = '/login';
+      });
+    };
+
 
 
 

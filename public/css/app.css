@@ -47,9 +47,25 @@ html, body {
 }
 
 .hero-unit h1 {
+	font-family: 'Oxygen', sans-serif;
 	margin-top: -30px;
 	float:left;
 	margin-bottom: 30px;
+	margin-left: 80px;
+	font-weight: 100;
+}
+
+.hero-unit form {
+	margin-left: 70px;
+}
+
+.hero-unit input[type="submit"], .hero-unit a {
+	width: 150px;
+}
+
+
+.hero-unit input[type="text"], .hero-unit input[type="password"]  {
+	width: 320px;	
 }
 textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {   
 border-color: rgba(158, 217, 216, 0.8);
@@ -239,10 +255,10 @@ outline: 0 none;}
 	margin-left: 10px;
 }
 
-.btn-info {
+.btn-success {
 	color: #061C26;
 	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
-	background-color: #EDE9F0;
+	background-color: #C7FF8B;
 	background-image:none;
 	background-image: none;
 	background-image: none;
@@ -255,12 +271,12 @@ outline: 0 none;}
 	filter: progid:none;
 }
 
-.btn-info:hover {
-	background-color: #D4D0D1;
+.btn-success:hover {
+	background-color: #B7EB80;
 	color: #061C26;
 }
 
-.btn-danger {
+.btn-info {
 	color: black;
 	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
 	background-color: #9ED9D8;
@@ -276,7 +292,7 @@ outline: 0 none;}
 	filter: progid:none;
 }
 
-.btn-danger:hover {
+.btn-info:hover {
 	color: black;
 	background-color: #84B5B4;
 }
@@ -295,6 +311,10 @@ outline: 0 none;}
 	filter: progid:none;
 }
 
+.btn-inverse {
+	margin-left: 580px;
+	background-color: #3a3a3a;
+}
 
 	#leftBar {
 		width: 200px;
