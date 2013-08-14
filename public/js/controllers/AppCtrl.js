@@ -32,11 +32,12 @@ angular.module('myApp.controllers', []).
 
   
 
-  $scope.addTask = function() {
-    if ($scope.taskInput != '') {
-      console.log($scope.taskInput);
-      $scope.tasks.push({title:$scope.taskInput, remove:false, drag:true, checked: "danger"});
-      $scope.taskInput = '';
+  $scope.addTask = function(index) {
+    if ($scope.projects[index].taskInput != '') {
+      console.log($scope.projects[index].taskInput);
+      console.log($scope.projects[index]);
+      $scope.projects[index].tasks.push({title:$scope.projects[index].taskInput, remove:false, drag:true, checked: "danger"});
+      $scope.projects[index].taskInput = '';
     }
   };
 

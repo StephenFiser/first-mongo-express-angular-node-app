@@ -1,27 +1,14 @@
 extends layout
 
 block body
-    div(id="leftBar")
-        div(id="createTask")
-            form(ng-submit="addTask()")
-                div(id="taskInput")
-                    input(type="text", ng-model="taskInput", ng-model-instant, placeholder="Create a new task.")
-                    button(type="submit", class="btn") Add
-
-        div(id="panel", data-drop="true", ng-model="tasks", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=tasks])'}", jqyoui-droppable="{multiple:true}")
-            div(class="btn btn-info btn-draggable panelWidth", ng-repeat="item in tasks", ng-show="item.title", data-drag="true", data-jqyoui-options="{revert: 'invalid'}", ng-model="tasks", jqyoui-draggable="{index: {{$index}},animate:true}") {{item.title}}
-
-        div(id="trash", data-drop="true", ng-model="trash", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=trash])'}", jqyoui-droppable="{multiple:true}")
-            i(class="icon-trash pull-left")
-            p(class="lead pull-left") Drag Here to Discard
-
-
     div(id="content")
         div(class="space left")
             a(class="left arrow", id="left", href="#", data-slide="prev") &lsaquo;
         div(class="project", ng-repeat="project in projects")
             div.tabtop
                 h5.pull-left {{project.title}}
+                form(ng-submit="addTask($index)")
+                    input(type="text", ng-model="project.taskInput", ng-model-instant, placeholder="Create a new task.")
                 
             div(class="fill", data-drop="true", ng-model="project.tasks", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=project])'}", jqyoui-droppable="{multiple:true}")
                 div(class="btn btn-info btn-draggable projectWidth", ng-repeat="item in project.tasks", ng-show="item.title", data-drag="true", data-jqyoui-options="{revert: 'invalid'}", ng-model="project.tasks", jqyoui-draggable="{index: {{$index}},animate:true}") {{item.title}}
