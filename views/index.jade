@@ -39,13 +39,10 @@ block body
         div(class="navbar navbar-fixed-bottom")
             div(class="navbar-inner")
                 div.container
-                    ul(class="nav pull-right") 
-                        li 
-                            div(id="discard", class="btn btn-large btn-gray", data-drop="true", ng-model="trash", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=project])'}", jqyoui-droppable="{multiple:true}") 
-                                i(class="icon-trash")
-                                | Drag here to discard
-                        li
-                            button(class="btn btn-large btn-primary save", ng-click="save()") Save
+                    div(id="discard", class="btn btn-large btn-gray", data-drop="true", ng-model="trash", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=project])'}", jqyoui-droppable="{multiple:true}") 
+                        i(class="icon-trash")
+                        | Drag here to discard
+                    button(class="btn btn-large btn-primary save", ng-click="save()") Save
                 
 
      
