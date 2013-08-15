@@ -14,7 +14,7 @@ block body
                         input(type="text", ng-model="project.taskInput", ng-model-instant, placeholder="Create a new task.")
                     
                 div(class="fill", data-drop="true", ng-model="project.tasks", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=project])'}", jqyoui-droppable="{multiple:true}")
-                    div(class="btn btn-info btn-draggable projectWidth", ng-repeat="item in project.tasks", ng-show="item.title", data-drag="true", data-jqyoui-options="{revert: 'invalid'}", ng-model="project.tasks", jqyoui-draggable="{index: {{$index}},animate:true}") {{item.title}}
+                    div(class="btn btn-light-gray btn-draggable projectWidth", ng-repeat="item in project.tasks", ng-show="item.title", data-drag="true", data-jqyoui-options="{revert: 'invalid'}", ng-model="project.tasks", jqyoui-draggable="{index: {{$index}},animate:true}") {{item.title}}
                         a(href="#"+"{{item.title | removeWhite}}", role="button", data-toggle="modal")
                             i(class="icon-plus pull-right")
 
@@ -28,7 +28,7 @@ block body
                                 div
                                     textarea(ng-model="item.description", rows="5", cols="50")
                             div(class="modal-footer")
-                                a(href="/", class="btn btn-success", data-dismiss="modal", aria-hidden="true") Save changes
+                                a(href="/", class="btn btn-primary", data-dismiss="modal", aria-hidden="true") Save changes
 
 
 
@@ -40,10 +40,13 @@ block body
             div(class="navbar-inner")
                 div.container
                     ul(class="nav pull-right") 
-                        li 
-                            div(class="btn btn-large", data-drop="true", ng-model="discard", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=project])'}", jqyoui-droppable="{multiple:true}") Drag here to discard
                         li
-                                button(class="btn btn-large btn-success save", ng-click="save()") Save
+                            button(class="btn btn-large btn-info save", ng-click="save()") Save
+                    ul(class="nav pull-right") 
+                        li 
+                            div(id="discard", class="btn btn-large btn-gray", data-drop="true", ng-model="trash", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=project])'}", jqyoui-droppable="{multiple:true}") 
+                                i(class="icon-trash")
+                                | Drag here to discard
                 
 
      
