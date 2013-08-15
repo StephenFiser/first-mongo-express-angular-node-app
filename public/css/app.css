@@ -8,7 +8,7 @@
 
 html, body {
 	height: 100%;
-	color: #061C26;
+	color: #3a3a3a;
 	font-family: 'Oxygen', sans-serif;
 	background-color: #e8e8e8;
 }
@@ -72,9 +72,11 @@ html, body {
 	width: 320px;	
 }
 textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {   
-border-color: rgba(158, 217, 216, 0.8);
-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(158, 217, 216, 0.6);
-outline: 0 none;}
+	border-color: none;
+	box-shadow: none;
+	outline: 0 none;
+	border: 1px solid #3a3a3a;
+}
 
 .projectInput {
 	margin-top: 5px;
@@ -189,7 +191,7 @@ outline: 0 none;}
 }
 
 .inputArea {
-	background-color: lightgray;
+	background-color: #D4D0D1;
 	border-bottom: 1px solid white;
 	border-top: 1px solid #e8e8e8;
 }
@@ -298,35 +300,35 @@ outline: 0 none;}
 	color: #061C26;
 }
 
-.btn-info {
+.btn-primary {
 	color: white;
 	text-shadow: none;
 	background-color: #0098D4;
-	background-image:none;
-	background-image: none;
-	background-image: none;
-	background-image: none;
-	background-image: none;
-	background-repeat: none;
-	border-color: none;
-	border-color: none;
-	filter: progid:none;
-	filter: progid:none;
-}
-
-.btn-info:hover {
-	color: white;
-	background-color: #0073A1;
-}
-
-.btn-primary {
-	color: white;
-	background-color: #0077A6;
 }
 
 .btn-primary:hover {
 	color: white;
-	background-color: #005D82;
+	background-color: #0073A1;
+}
+
+.btn-info {
+	color: white;
+	text-shadow: none;
+	background-color: #9DC2FF;
+	
+}
+
+.btn-info:hover {
+	color: white;
+	background-color: #89A9DE;
+}
+
+.btn-danger {
+	background-color: #FF8577; 
+}
+
+.btn-danger:hover {
+	background-color: #F27E71; 
 }
 
 .btn {
@@ -344,6 +346,7 @@ outline: 0 none;}
 }
 
 .btn-gray {
+	background-color: #E8E8E8;
 	color:#3a3a3a;
 	text-shadow: none;
 	width: 300px;
@@ -354,16 +357,21 @@ outline: 0 none;}
 }
 
 .btn-gray:hover {
+	background-color: #E8E8E8;
 	color:#3a3a3a;
 	text-shadow: none;
 	width: 300px;
 }
 
 .btn-light-gray {
+	color:#3a3a3a;
+	text-shadow: 0 -1px 0 rgba(104,104,104,0.25);
 	background-color: #F0F0F0;
 }
 
 .btn-light-gray:hover {
+	color:#3a3a3a;
+	text-shadow: 0 -1px 0 rgba(104,104,104,0.25);
 	background-color: #e8e8e8;
 }
 
