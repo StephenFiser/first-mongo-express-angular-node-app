@@ -4,6 +4,7 @@ html(lang="en", ng-app="myApp")
 		meta(charset="utf-8")
 		base(href='/')
 		link(rel="stylesheet", type="text/css", href="css/lib/bootstrap.min.css")
+		link(rel="stylesheet", type="text/css", href="css/lib/bootstrap-responsive.min.css")
 		link(rel="stylesheet", type="text/css", href="css/app.css")
 		link(href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700', rel='stylesheet', type='text/css')
 		title Action Steps
@@ -27,9 +28,8 @@ html(lang="en", ng-app="myApp")
 								input(type="text", ng-model="projectInput", class="projectInput", placeholder="Create a new project.")
 							li
 								input(type="submit", class="btn", value="Create")
-							li
-								button(class="btn btn-success save", ng-click="save()") Save
+						ul(class="nav pull-right")
 							li 
-								button(class="btn btn-inverse", ng-click="logout()") Logout
+								a(href="#", ng-click="logout()") Logout
 						
 		block body

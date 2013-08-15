@@ -17,6 +17,10 @@ html, body {
 	background-image: none; 
 }
 
+.navbar-fixed-bottom, .navbar-fixed-bottom .navbar-inner {
+	height: 60px;
+}
+
 .room {
 	margin: 10px;
 }
@@ -97,6 +101,7 @@ outline: 0 none;}
 #content {
 	float: left;
 	background-color: #e8e8e8;
+	overflow: hidden;
 }
 
 .inner-content {
@@ -118,7 +123,6 @@ outline: 0 none;}
 }
 
 .project {
-	margin: 10px;
 	margin-top: 55px;
 	background-color: white;
 	float: left;
@@ -184,6 +188,15 @@ outline: 0 none;}
 	border-top-right-radius: 0px;
 }
 
+.inputArea {
+	background-color: #3a3a3a;
+}
+
+.inputArea input {
+	margin: 10px;
+	width: 86%;
+}
+
 #panel {
 	background-color: white;
 	padding: 5px;
@@ -227,8 +240,11 @@ outline: 0 none;}
 	background-color: #d96055;
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
-	margin-bottom: 10px;
 
+}
+
+.lessMarginForm {
+	margin: 0 0 10px;
 }
 
 .tabtop h5{
@@ -322,8 +338,12 @@ outline: 0 none;}
 	}
 
 	#content {
-		width: 1100px;
-		height: 500px;
+		width: 1200px;
+		height: 100%;
+	}
+
+	.row-fluid {
+		height: 100%;
 	}
 
 	.inner-content {
@@ -332,16 +352,14 @@ outline: 0 none;}
 	}
 
 	.project {
-		width: 198px;
-		height: 430px;
+		height: 80%;
 	}
-
 	.panelWidth {
 		width: 160px;
 	}
 
 	.projectWidth {
-		width: 160px;
+		width: 240px;
 		margin-left: 5px;
 	}
 

@@ -1,40 +1,53 @@
 extends layout
 
 block body
+    div(class="space left")
+        a(class="left arrow", id="left", href="#", data-slide="prev") &lsaquo;
+
     div(id="content")
-        div(class="space left")
-            a(class="left arrow", id="left", href="#", data-slide="prev") &lsaquo;
-        div(class="project", ng-repeat="project in projects")
-            div.tabtop
-                h5.pull-left {{project.title}}
-                form(ng-submit="addTask($index)")
-                    input(type="text", ng-model="project.taskInput", ng-model-instant, placeholder="Create a new task.")
+        div(class="row-fluid")
+            div(class="project span3", ng-repeat="project in projects")
+                div.tabtop
+                    h5.pull-left {{project.title}}
+                div.inputArea
+                    form(ng-submit="addTask($index)", class="lessMarginForm")
+                        input(type="text", ng-model="project.taskInput", ng-model-instant, placeholder="Create a new task.")
+                    
+                div(class="fill", data-drop="true", ng-model="project.tasks", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=project])'}", jqyoui-droppable="{multiple:true}")
+                    div(class="btn btn-info btn-draggable projectWidth", ng-repeat="item in project.tasks", ng-show="item.title", data-drag="true", data-jqyoui-options="{revert: 'invalid'}", ng-model="project.tasks", jqyoui-draggable="{index: {{$index}},animate:true}") {{item.title}}
+                        a(href="#"+"{{item.title | removeWhite}}", role="button", data-toggle="modal")
+                            i(class="icon-plus pull-right")
+
+                        div(id="{{item.title | removeWhite}}", class="modal hide fade", tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+                            div(class="modal-header")
+                                a(href="/", type="button", class="close", data-dismiss="modal", aria-hidden="true") ×
+                                h3(id="myModalLabel") Task Overview
+                            div(class="modal-body")
+                                div
+                                    input(type="text", ng-model="item.title")
+                                div
+                                    textarea(ng-model="item.description", rows="5", cols="50")
+                            div(class="modal-footer")
+                                a(href="/", class="btn btn-success", data-dismiss="modal", aria-hidden="true") Save changes
+
+
+
+
+    div(class="space")
+        a(class="right arrow", id="right", href="#", data-slide="next") &rsaquo;
+
+        div(class="navbar navbar-fixed-bottom")
+            div(class="navbar-inner")
+                div.container
+                    ul(class="nav pull-right") 
+                        li 
+                            div(class="btn btn-large", data-drop="true", ng-model="discard", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=project])'}", jqyoui-droppable="{multiple:true}") Drag here to discard
+                        li
+                                button(class="btn btn-large btn-success save", ng-click="save()") Save
                 
-            div(class="fill", data-drop="true", ng-model="project.tasks", data-jqyoui-options="{accept:'.btn-draggable:not([ng-model=project])'}", jqyoui-droppable="{multiple:true}")
-                div(class="btn btn-info btn-draggable projectWidth", ng-repeat="item in project.tasks", ng-show="item.title", data-drag="true", data-jqyoui-options="{revert: 'invalid'}", ng-model="project.tasks", jqyoui-draggable="{index: {{$index}},animate:true}") {{item.title}}
-                    a(href="#"+"{{item.title | removeWhite}}", role="button", data-toggle="modal")
-                        i(class="icon-plus pull-right")
-
-                    div(id="{{item.title | removeWhite}}", class="modal hide fade", tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
-                        div(class="modal-header")
-                            a(href="/", type="button", class="close", data-dismiss="modal", aria-hidden="true") ×
-                            h3(id="myModalLabel") Task Overview
-                        div(class="modal-body")
-                            div
-                                input(type="text", ng-model="item.title")
-                            div
-                                textarea(ng-model="item.description", rows="5", cols="50")
-                        div(class="modal-footer")
-                            a(href="/", class="btn btn-success", data-dismiss="modal", aria-hidden="true") Save changes
-
-
-
-
-        div(class="space")
-            a(class="right arrow", id="right", href="#", data-slide="next") &rsaquo;
 
      
-    div(id="footer")
+    
         
                    
                 
