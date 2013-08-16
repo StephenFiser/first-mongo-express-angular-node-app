@@ -28,12 +28,7 @@ html(lang="en", ng-app="myApp")
 								input(type="text", ng-model="projectInput", class="projectInput", placeholder="Create a new project.")
 							li
 								input(type="submit", class="btn btn-primary", value="+", id="addButton")
-							li
-								button(class="btn btn-light-gray save", ng-click="sohwActive()") Show Active
-							li
-								button(class="btn btn-light-gray save", ng-click="showCompleted()") Show Completed
-							li
-								button(class="btn btn-light-gray save", ng-click="showAll()") Show All
+
 						ul(class="nav pull-right")
 							li 
 								a(href="#", ng-click="logout()") Logout

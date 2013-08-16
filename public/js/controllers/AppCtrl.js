@@ -24,8 +24,13 @@ angular.module('myApp.controllers', []).
   };
 
   $scope.editProject = function(index) {
-    console.log($scope.projects[index].title);
+    
   };
+
+  $scope.removeProject = function(index) {
+    $scope.projects.splice(index, 1);
+
+  }
 
   $scope.tasks = [];
   $scope.trash = [];

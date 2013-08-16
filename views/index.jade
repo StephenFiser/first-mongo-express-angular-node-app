@@ -9,6 +9,8 @@ block body
             div(class="project span3", ng-repeat="project in projects")
                 div.tabtop
                     h5.pull-left {{project.title}}
+                    a(href="#")
+                        i(class="icon-remove icon-white pull-right", ng-click="removeProject($index)")
                 div.inputArea
                     form(ng-submit="addTask($index)", class="lessMarginForm")
                         input(type="text", ng-model="project.taskInput", ng-model-instant, placeholder="Create a new task.")
