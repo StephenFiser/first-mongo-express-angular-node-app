@@ -13,6 +13,14 @@ html, body {
 	background-color: #e8e8e8;
 }
 
+body#login {
+	background: url("../../img/mountains.jpg") no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
 .navbar-inner {
 	background-image: none; 
 }
@@ -30,7 +38,7 @@ html, body {
 }
 
 .hero-unit {
-	background-color: white;
+	background-color: rgba(255,255,255,.85);
 	width: 500px;
 	height: 200px;
 }
@@ -50,12 +58,12 @@ html, body {
 	margin: 0 auto;
 }
 
-.hero-unit h1 {
-	font-family: 'Oxygen', sans-serif;
-	margin-top: -30px;
+.hero-unit img {
+	
+	margin-top: -20px;
 	float:left;
 	margin-bottom: 30px;
-	margin-left: 80px;
+	margin-left: 35px;
 	font-weight: 100;
 }
 
@@ -63,6 +71,9 @@ html, body {
 	margin-left: 70px;
 }
 
+.brand img{
+	height: 25px;
+}
 .hero-unit input[type="submit"], .hero-unit a {
 	width: 150px;
 }
