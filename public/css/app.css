@@ -137,6 +137,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 .project {
 	margin-top: 55px;
+	height: 80%;
 	background-color: white;
 	float: left;
 	border-radius: 3px;
@@ -234,7 +235,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 .fill {
 	width: 100%;
-	height: 380px;
+	height: 75%;
 	border-top: 1px solid lightgray;
 	padding-top: 5px;
 }
@@ -397,30 +398,112 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	margin-right: 10px;
 }
 
-	#leftBar {
-		width: 200px;
-		height: 148px;
-	}
+.row-fluid {
+		height: 100%;
+}
 
+@media (min-width: 1300px) { 
 	#content {
 		width: 1200px;
 		height: 100%;
 	}
 
-	.row-fluid {
+	
+
+	.projectWidth {
+		width: 240px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+}
+
+@media (min-width: 800px) { 
+	#content {
+		width: 700px;
 		height: 100%;
 	}
 
-	.inner-content {
-		width: 875px;
-		height: 500px;
+	.projectWidth {
+		width: 160px;
+		margin-left: 5px;
 	}
 
-	.project {
-		height: 80%;
+	#trash {
+		height: 100px;
 	}
-	.panelWidth {
-		width: 160px;
+}
+
+@media (min-width: 900px) { 
+	#content {
+		width: 800px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 170px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+}
+
+@media (min-width: 1000px) { 
+	#content {
+		width: 900px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 180px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+}
+
+@media (min-width: 1100px) { 
+	#content {
+		width: 1000px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 200px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+}
+
+@media (min-width: 1200px) { 
+	#content {
+		width: 1100px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 220px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+}
+
+@media (min-width: 1300px) { 
+	#content {
+		width: 1200px;
+		height: 100%;
 	}
 
 	.projectWidth {
@@ -428,11 +511,188 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 		margin-left: 5px;
 	}
 
-	#panel {
-		margin-top: 50px;
-		height: 231px;
+	#trash {
+		height: 100px;
+	}
+}
+
+@media (min-width: 1400px) { 
+	#content {
+		width: 1300px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 260px;
+		margin-left: 5px;
 	}
 
 	#trash {
 		height: 100px;
 	}
+}
+
+@media (min-width: 1500px) { 
+	#content {
+		width: 1400px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 280px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+
+	@media (min-width: 1600px) { 
+	#content {
+		width: 1500px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 300px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+
+	@media (min-width: 1700px) { 
+	#content {
+		width: 1600px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 320px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+
+	@media (min-width: 1800px) { 
+	#content {
+		width: 1700px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 340px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+
+	@media (min-width: 1900px) { 
+	#content {
+		width: 1800px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 360px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+
+	@media (min-width: 2000px) { 
+	#content {
+		width: 1900px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 380px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+
+	@media (min-width: 2100px) { 
+	#content {
+		width: 2000px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 400px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+	@media (min-width: 2200px) { 
+	#content {
+		width: 2100px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 420px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+
+	@media (min-width: 2300px) { 
+	#content {
+		width: 2200px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 440px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+
+	@media (min-width: 2400px) { 
+	#content {
+		width: 2300px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 460px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+
+	@media (min-width: 2500px) { 
+	#content {
+		width: 2400px;
+		height: 100%;
+	}
+
+	.projectWidth {
+		width: 480px;
+		margin-left: 5px;
+	}
+
+	#trash {
+		height: 100px;
+	}
+}
