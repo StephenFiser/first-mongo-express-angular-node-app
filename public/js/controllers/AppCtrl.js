@@ -50,19 +50,7 @@ angular.module('myApp.controllers', []).
     console.log($scope.projects);
   }
 
-    $scope.save = function() {
-      $http({
-      method: 'PUT',
-      url: '/person',
-      data: $scope.person
-      }).
-      success(function (data, status, headers, config) {
-        console.log(data);
-      }).
-      error(function (data, status, headers, config) {
-        console.log('error');
-      });
-    };
+    
 
     $scope.logout = function() {
       $http({
@@ -73,8 +61,11 @@ angular.module('myApp.controllers', []).
       });
     };
 
+    $scope.closeAlert = function(index) {
+      $scope.alerts.splice(index, 1);
+    };
 
-
+    $scope.alerts = [];
 
        $scope.open = function () {
         $scope.shouldBeOpen = true;
@@ -83,6 +74,17 @@ angular.module('myApp.controllers', []).
       $scope.close = function () {
         $scope.closeMsg = 'I was closed at: ' + new Date();
         $scope.shouldBeOpen = false;
+      };
+
+      $scope.save = function() {
+        $scope.alerts.push({type:'success', msg: 'Successfully Saved!'})
+                     .delay(800)
+                     .splice({type:'success', msg: 'Successfully Saved!'}, 1);
+        $http({
+        method: 'PUT',
+        url: '/person',
+        data: $scope.person
+        });
       };
 
       $scope.items = ['item1', 'item2'];
