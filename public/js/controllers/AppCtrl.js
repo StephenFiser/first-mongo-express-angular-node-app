@@ -77,14 +77,16 @@ angular.module('myApp.controllers', []).
       };
 
       $scope.save = function() {
-        $scope.alerts.push({type:'success', msg: 'Successfully Saved!'})
-                     .delay(800)
-                     .splice({type:'success', msg: 'Successfully Saved!'}, 1);
+        $scope.alerts.push({type:'success', msg: 'Successfully Saved!'});
         $http({
         method: 'PUT',
         url: '/person',
         data: $scope.person
         });
+      };
+
+      $scope.saveChanges = function() {
+        $scope.alerts.push({type:'success', msg: 'Changes Saved!'});
       };
 
       $scope.items = ['item1', 'item2'];
