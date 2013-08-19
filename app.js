@@ -179,7 +179,7 @@ app.get('/person', function(req,res) {
 	if (!req.session.user) {
 		res.redirect('/login');
 	} else {
-		User.findOne({username: new RegExp('^'+req.session.user+'$', "i")}, function(err, user) {
+		mongoose.model('User').findOne({username: new RegExp('^'+req.session.user+'$', "i")}, function(err, user) {
 			if (!err) {
 				console.log(JSON.stringify(user));
 				res.send(user);
