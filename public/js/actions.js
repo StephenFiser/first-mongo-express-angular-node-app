@@ -1,5 +1,5 @@
 $(function() {
-	var projectWidth = $('.project').width() + 10;
+	var projectWidth = $('.span3').width();
 	var step = projectWidth;
 	var trigger;
 

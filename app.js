@@ -51,8 +51,8 @@ var User = new Schema({ // update data model here
 	"projects": [ Project ]
 });
 
-var UserModel = mongoose.model('User', User);
-UserModel.prototype.validPassword = function(pass) {
+var User = mongoose.model('User', User);
+	User.prototype.validPassword = function(pass) {
 	return (this.password === pass);
 }
 
@@ -71,7 +71,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.cookieParser());
 app.use(express.session({ secret: 'keyboardcat' }));
 app.use(passport.initialize());
-//app.use(passport.session());
+app.use(passport.session());
 app.use(app.router);
 
 // development only
@@ -86,7 +86,7 @@ if (app.get('env') === 'production') {
 
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    UserModel.findOne({ username: username }, function (err, user) {	
+    mongoose.model('User').findOne({ username: username }, function (err, user) {	
       if (err) { 
       	console.log('There was an error');
       	return done(err); 
@@ -134,6 +134,7 @@ app.get('/login', function(req, res) {
 app.post('/login', passport.authenticate('local', { 
 	failureRedirect: '/login'
 }), function(req, res) {
+	console.log(req.user + 'is here!');
 	req.session.user = req.body.username;
 	res.redirect('/');
 });
@@ -152,7 +153,7 @@ app.get('/logout', function(req, res) {
 
 app.post('/signup', function(req,res) {
 	if (req.body.username && req.body.password) {
-		var user = new UserModel({
+		var user = new User({
 			first_name: req.body.first_name,
 			last_name: req.body.last_name,
 			email: req.body.email,
@@ -178,7 +179,7 @@ app.get('/person', function(req,res) {
 	if (!req.session.user) {
 		res.redirect('/login');
 	} else {
-		UserModel.findOne({username: new RegExp('^'+req.session.user+'$', "i")}, function(err, user) {
+		User.findOne({username: new RegExp('^'+req.session.user+'$', "i")}, function(err, user) {
 			if (!err) {
 				console.log(JSON.stringify(user));
 				res.send(user);
@@ -195,7 +196,7 @@ app.put('/person', function(req,res) {
 	} else {
 		console.log('Updating user');
 		console.log(req.body.projects);
-		UserModel.findOne({username: new RegExp('^'+req.session.user+'$', "i")}, function(err, user) {
+		mongoose.model('User').findOne({username: new RegExp('^'+req.session.user+'$', "i")}, function(err, user) {
 			console.log(user);
 			user.projects = req.body.projects;
 			console.log(user.first_name + ' is here');

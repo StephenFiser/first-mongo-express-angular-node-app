@@ -117,14 +117,9 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 	overflow: hidden;
 }
 
-.inner-content {
-	float: left;
-	overflow: hidden;
-}
-
 .project-holder {
 	width: 10000px;
-	height: 500px;
+	height: 100%;
 	position: relative;
 }
 

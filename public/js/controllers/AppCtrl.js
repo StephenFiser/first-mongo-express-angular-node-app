@@ -86,7 +86,7 @@ angular.module('myApp.controllers', []).
       };
 
       $scope.saveChanges = function() {
-        $scope.alerts.push({type:'success', msg: 'Changes Saved!'});
+        $scope.alerts.push({type:'success', msg: 'Successfully Saved!'});
       };
 
       $scope.items = ['item1', 'item2'];
