@@ -178,7 +178,14 @@ app.get('/person', function(req,res) {
 	if (!req.session.user) {
 		res.redirect('/login');
 	} else {
-		res.send(req.user);
+		mongoose.model('User').findOne({username: new RegExp('^'+req.session.user+'$', "i")}, function(err, user) {
+			if (!err) {
+				console.log(JSON.stringify(user));
+				res.send(user);
+			} else {
+				console.log(err);
+			}
+		});
 	}
 });
 
@@ -188,7 +195,7 @@ app.put('/person', function(req,res) {
 	} else {
 		console.log('Updating user');
 		console.log(req.body.projects);
-		mongoose.model('User').findOne({username: new RegExp('^'+req.user.username+'$', "i")}, function(err, user) {
+		mongoose.model('User').findOne({username: new RegExp('^'+req.session.user+'$', "i")}, function(err, user) {
 			console.log(user);
 			user.projects = req.body.projects;
 			console.log(user.first_name + ' is here');
@@ -204,7 +211,7 @@ app.put('/person', function(req,res) {
 });
 
 
-/*app.get('/:user', function(req, res) {
+app.get('/:user', function(req, res) {
 	if (!req.session.user) {
 		res.redirect('/login');
 	} else if (req.params.user != req.session.user) {
@@ -212,7 +219,7 @@ app.put('/person', function(req,res) {
 	} else {
 		res.render('index');
 	}
-});*/
+});
 
 
 
