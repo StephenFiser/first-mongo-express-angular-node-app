@@ -134,7 +134,6 @@ app.get('/login', function(req, res) {
 app.post('/login', passport.authenticate('local', { 
 	failureRedirect: '/login'
 }), function(req, res) {
-	console.log(req.user + 'is here!');
 	req.session.user = req.body.username;
 	res.redirect('/');
 });
@@ -179,14 +178,7 @@ app.get('/person', function(req,res) {
 	if (!req.session.user) {
 		res.redirect('/login');
 	} else {
-		mongoose.model('User').findOne({username: new RegExp('^'+req.session.user+'$', "i")}, function(err, user) {
-			if (!err) {
-				console.log(JSON.stringify(user));
-				res.send(user);
-			} else {
-				console.log(err);
-			}
-		});
+		res.send(req.user);
 	}
 });
 
@@ -212,7 +204,7 @@ app.put('/person', function(req,res) {
 });
 
 
-app.get('/:user', function(req, res) {
+/*app.get('/:user', function(req, res) {
 	if (!req.session.user) {
 		res.redirect('/login');
 	} else if (req.params.user != req.session.user) {
@@ -220,7 +212,7 @@ app.get('/:user', function(req, res) {
 	} else {
 		res.render('index');
 	}
-});
+});*/
 
 
 
