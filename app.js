@@ -188,7 +188,7 @@ app.put('/person', function(req,res) {
 	} else {
 		console.log('Updating user');
 		console.log(req.body.projects);
-		mongoose.model('User').findOne({username: new RegExp('^'+req.session.user+'$', "i")}, function(err, user) {
+		mongoose.model('User').findOne({username: new RegExp('^'+req.user.username+'$', "i")}, function(err, user) {
 			console.log(user);
 			user.projects = req.body.projects;
 			console.log(user.first_name + ' is here');
